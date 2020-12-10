@@ -5,7 +5,7 @@ set -eu
 
 echo "install prettier"
 npm install --silent --global prettier
-echo "run prettier 1"
+echo "run prettier 2"
 prettier --check .
 echo $?
 return 0
