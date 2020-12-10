@@ -3,6 +3,11 @@
 # x would be for showing the commands before they are executed
 set -eu
 
+
+echo "Prettifing files..."
+echo "Files:"
+return prettier $INPUT_PRETTIER_OPTIONS
+
 # FUNCTIONS
 # Function for setting up git env in the docker container (copied from https://github.com/stefanzweifel/git-auto-commit-action/blob/master/entrypoint.sh)
 _git_setup ( ) {
@@ -42,35 +47,35 @@ prettier $INPUT_PRETTIER_OPTIONS || echo "Problem running prettier with $INPUT_P
 
 # # To keep runtime good, just continue if something was changed
 # if _git_changed; then
-  if $INPUT_DRY; then
-    echo "Prettier found unpretty files!"
-    exit 1
-  else
-    # Calling method to configure the git environemnt
-    _git_setup
+#   if $INPUT_DRY; then
+#     echo "Prettier found unpretty files!"
+#     exit 1
+#   else
+#     # Calling method to configure the git environemnt
+#     _git_setup
 
-    if $INPUT_ONLY_CHANGED; then
-      for file in $(git diff --name-only HEAD^..HEAD)
-      do
-        git add $file
-      done
-    else
-      # Add changes to git
-      git add "${INPUT_FILE_PATTERN}" || echo "Problem adding your files with pattern ${INPUT_FILE_PATTERN}"
-    fi
+#     if $INPUT_ONLY_CHANGED; then
+#       for file in $(git diff --name-only HEAD^..HEAD)
+#       do
+#         git add $file
+#       done
+#     else
+#       # Add changes to git
+#       git add "${INPUT_FILE_PATTERN}" || echo "Problem adding your files with pattern ${INPUT_FILE_PATTERN}"
+#     fi
 
-    # Commit and push changes back
-    if $INPUT_SAME_COMMIT; then
-      echo "Amending the current commit..."
-      git pull
-      git commit --amend --no-edit
-      git push origin -f
-    else
-      git commit -m "$INPUT_COMMIT_MESSAGE" --author="$GITHUB_ACTOR <$GITHUB_ACTOR@users.noreply.github.com>" ${INPUT_COMMIT_OPTIONS:+"$INPUT_COMMIT_OPTIONS"} || echo "No files added to commit"
-      git push origin
-    fi
-    echo "Changes pushed successfully."
-  fi
+#     # Commit and push changes back
+#     if $INPUT_SAME_COMMIT; then
+#       echo "Amending the current commit..."
+#       git pull
+#       git commit --amend --no-edit
+#       git push origin -f
+#     else
+#       git commit -m "$INPUT_COMMIT_MESSAGE" --author="$GITHUB_ACTOR <$GITHUB_ACTOR@users.noreply.github.com>" ${INPUT_COMMIT_OPTIONS:+"$INPUT_COMMIT_OPTIONS"} || echo "No files added to commit"
+#       git push origin
+#     fi
+#     echo "Changes pushed successfully."
+#   fi
 # else
 #   echo "Nothing to commit. Exiting."
 # fi
