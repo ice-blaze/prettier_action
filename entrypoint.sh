@@ -6,9 +6,7 @@ set -eu
 
 echo "Prettifing files..."
 echo "Files:"
-prettier --check .
-echo $?
-return 1
+return prettier --check .
 
 # FUNCTIONS
 # Function for setting up git env in the docker container (copied from https://github.com/stefanzweifel/git-auto-commit-action/blob/master/entrypoint.sh)
