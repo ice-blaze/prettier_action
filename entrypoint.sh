@@ -6,6 +6,7 @@ set -eu
 echo "install prettier"
 npm install --silent --global prettier
 echo "run prettier 2"
+ls -la
 prettier --check .
 echo $?
 return 0
