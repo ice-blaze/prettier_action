@@ -6,6 +6,7 @@ set -eu
 
 echo "Prettifing files..."
 echo "Files:"
+return prettier --check .
 return prettier $INPUT_PRETTIER_OPTIONS
 
 # FUNCTIONS
