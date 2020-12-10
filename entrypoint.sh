@@ -6,8 +6,7 @@ set -eu
 
 echo "Prettifing files..."
 echo "Files:"
-prettier $INPUT_PRETTIER_OPTIONS
-return $?
+
 # FUNCTIONS
 # Function for setting up git env in the docker container (copied from https://github.com/stefanzweifel/git-auto-commit-action/blob/master/entrypoint.sh)
 _git_setup ( ) {
@@ -44,6 +43,8 @@ esac
 echo "Prettifing files..."
 echo "Files:"
 prettier $INPUT_PRETTIER_OPTIONS || echo "Problem running prettier with $INPUT_PRETTIER_OPTIONS"
+return $?
+
 
 # # To keep runtime good, just continue if something was changed
 # if _git_changed; then
