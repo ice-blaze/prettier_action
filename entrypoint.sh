@@ -3,7 +3,5 @@
 # x would be for showing the commands before they are executed
 set -eu
 
-echo "run prettier 3"
-ls -la
-cat apps/lingo-ui/src/app/routed/scopes/scopes.component.html
+echo "run prettier"
 prettier --check .
