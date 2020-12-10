@@ -6,7 +6,9 @@ set -eu
 echo "install prettier"
 npm install --silent --global prettier
 echo "run prettier 1"
-return prettier --check .
+prettier --check .
+echo $?
+return 0
 
 # FUNCTIONS
 # Function for setting up git env in the docker container (copied from https://github.com/stefanzweifel/git-auto-commit-action/blob/master/entrypoint.sh)
