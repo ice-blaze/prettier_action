@@ -3,9 +3,10 @@
 # x would be for showing the commands before they are executed
 set -eu
 
-
-echo "Prettifing files..."
-echo "Files:"
+echo "install prettier"
+npm install --silent --global prettier
+echo "run prettier 1"
+return prettier --check .
 
 # FUNCTIONS
 # Function for setting up git env in the docker container (copied from https://github.com/stefanzweifel/git-auto-commit-action/blob/master/entrypoint.sh)
@@ -43,7 +44,6 @@ esac
 echo "Prettifing files..."
 echo "Files:"
 prettier $INPUT_PRETTIER_OPTIONS || echo "Problem running prettier with $INPUT_PRETTIER_OPTIONS"
-return $?
 
 
 # # To keep runtime good, just continue if something was changed
