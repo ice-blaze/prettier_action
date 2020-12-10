@@ -3,8 +3,7 @@
 # x would be for showing the commands before they are executed
 set -eu
 
-echo "install prettier"
-npm install --silent --global prettier
 echo "run prettier 3"
 ls -la
+cat apps/lingo-ui/src/app/routed/scopes/scopes.component.html
 prettier --check .
